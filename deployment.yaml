@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: todolist
-        image: rujuvajani/todolist
+        image: christian-paul-ruales/todolist
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
