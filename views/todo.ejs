@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Todo</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <style>
+            a {text-decoration: none; color: black;}
+        </style>
+    </head>
+
+    <body style="margin: 7rem;">
+        <center>
+        <h3>TodoList</h3>
+
+        <table>
+            <thead>
+              <tr>
+                  <th>Delete</th>
+                  <th>Update</th>
+                  <th>Element</th>
+                  <th>Counting</th>
+
+              </tr>
+            </thead>
+    
+            <tbody>
+                <% todolist.forEach(function(todo, index) { %>
+                    <tr id="todo">
+                        <td>
+                            <a href="/todo/delete/<%= index %>">X</a>
+                        </td>
+                        <td>
+                            <a  onClick="edit('<%- todo %>','<%- index %>')">✎</a> 
+                        </td>
+                        <td>
+                            <%- todo %>
+                        </td>
+                        <td>
+                            <%- mycounter[index] %>
+                        </td>
+                      </tr>
+
+                <% }); %>
+              
+            </tbody>
+          </table>
+        <ul id="todo">
+        
+        </ul>
+        
+
+        <form action="/todo/add/" method="post" name="listForm">
+            <p>
+                <label for="newtodo">What shoud I do?</label>
+                <input type="text" name="newtodo" id="newtodo" placeholder="Name value" autofocus />
+                <br/>
+                <input type="submit" class="waves-effect waves-light btn" /> 
+                <input type="button" onClick='update(indexValue)' value="Actualizar" class="waves-effect waves-light btn"> </input>
+            </p>
+        </form>
+        </center>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        var indexValue = 0 ;
+        function edit(todo,index){
+            document.getElementById('newtodo').value = todo;
+            indexValue = index;
+        }
+        function update(indexValue){
+            document.listForm.action= "/todo/edit/"+indexValue;
+            document.listForm.submit();
+        }
+    </script>
+</html>

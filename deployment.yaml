@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-todolist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-todolist
+  template:
+    metadata:
+      labels:
+        app: my-todolist
+    spec:
+      containers:
+      - name: todolist
+        image: rujuvajani/todolist
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080

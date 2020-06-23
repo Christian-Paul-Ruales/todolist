@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-todolist
+spec:
+  ClusterIP: 127.0.0.1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-todolist
+  template:
+    metadata:
+      labels:
+        app: my-todolist
+    spec:                     
+      containers: 
+      - name: todolist
+        image: my-todolist
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
